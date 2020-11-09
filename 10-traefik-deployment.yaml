@@ -1,4 +1,10 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: traefik
+
+---
+apiVersion: v1
 kind: ServiceAccount
 metadata:
   namespace: traefik
@@ -25,7 +31,7 @@ spec:
     spec:
       serviceAccountName: traefik-ingress-controller
       nodeSelector:
-        kubernetes.io/hostname: clab1003node14
+        kubernetes.io/hostname: %TRAEFIK_NODE%
       containers:
         - name: traefik
           image: traefik:v2.3
